@@ -18,7 +18,6 @@
 // internal
 // private
 // view & pure functions
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.19;
@@ -84,6 +83,7 @@ contract Raffle is VRFConsumerBaseV2 {
      */
     event EnteredRaffle(address indexed player);
     event PickedWinner(address indexed winner);
+    event RequestedRaffleWinner(uint256 indexed requestId);
 
     constructor(
         uint256 entranceFee,
@@ -158,14 +158,16 @@ contract Raffle is VRFConsumerBaseV2 {
         if (!upkeepNeeded) {
             revert Raffle__UpKeepNotNeeded(address(this).balance, s_players.length, uint256(s_raffleState));
         }
+        // check to see if enough time has passed
         s_raffleState = RaffleState.CALCULATING;
         uint256 requestId = i_vrfCoordiantor.requestRandomWords(
             i_gasLane, i_subscriptionId, BLOCK_CONFIRMATIONS, i_callBackGasLimit, NUMBER_WORDS
         );
+        emit RequestedRaffleWinner(requestId);
     }
 
     // CEI: Checks, Effects, Interactions(Interactions with Other contracts)
-    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
+    function fulfillRandomWords(uint256 /*requestId*/, uint256[] memory randomWords) internal override {
         // Checks
         //Effects
         uint256 indexOfWinner = randomWords[0] % s_players.length;
@@ -189,5 +191,25 @@ contract Raffle is VRFConsumerBaseV2 {
 
     function getEntranceFee() external view returns (uint256) {
         return i_entranceFee;
+    }
+
+    function getRaffleState() external view returns (RaffleState) {
+        return s_raffleState;
+    }
+
+    function getNumberOfPlayers() external view returns (uint256) {
+        return s_players.length;
+    }
+
+    function getPlayer(uint256 indexOfPlayer) external view returns (address) {
+        return s_players[indexOfPlayer];
+    }
+
+    function getRecentWinner() external view returns (address) {
+        return s_recentWinner;
+    }
+
+    function getLastTimeStamp() external view returns (uint256) {
+        return s_lastTimeStamp;
     }
 }

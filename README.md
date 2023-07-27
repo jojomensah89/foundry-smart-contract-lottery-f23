@@ -93,7 +93,7 @@ Head over to [faucets.chain.link](https://faucets.chain.link/) and get some test
 2. Deploy
 
 ```
-make deploy ARGS="--network sepolia"
+make deploy ARGS=" sepolia"
 ```
 
 This will setup a ChainlinkVRF Subscription for you. If you already have one, update it in the `scripts/HelperConfig.s.sol` file. It will also automatically add your contract as a consumer.

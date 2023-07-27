@@ -1,9 +1,9 @@
- # Proveable Random Raffle Contracts
+ # Proveable Random Raffle Contract
 
 
 ## ABout
 
-This code is to create a proveably random smart contract lottery 
+This code is to create a provably random smart contract lottery 
 
 
 
@@ -39,7 +39,7 @@ This will default to your local node. You need to have it running in another ter
 make deploy
 ```
 
-## Deploy - Other Networ (Less Secure)
+## Deploy - Other Network (Less Secure)
 
 
 [See below](#deployment-to-a-testnet-or-mainnet)
@@ -103,7 +103,7 @@ This will setup a ChainlinkVRF Subscription for you. If you already have one, up
 
 [You can follow the documentation if you get lost.](https://docs.chain.link/chainlink-automation/compatible-contracts)
 
-Go to [automation.chain.link](https://automation.chain.link/new) and register a new upkeep. Choose `Custom logic` as your trigger mechanism for automation. Your UI will look something like this once completed:
+Go to [automation.chain.link](https://automation.chain.link/new) and register new upkeep. Choose `Custom logic` as your trigger mechanism for automation. Your UI will look something like this once completed:
 
 ![Automation](./img/automation.png)
 

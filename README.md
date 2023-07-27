@@ -53,8 +53,6 @@ npx thirdweb deploy
 
 ## Testing
 
-We talk about 4 test tiers in the video.
-
 1. Unit
 2. Integration
 3. Forked

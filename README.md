@@ -13,6 +13,7 @@ This code is to create a provably random smart contract lottery
 ```
 git clone https://github.com/jojomensah89/foundry-smart-contract-lottery-f23.git
 cd foundry-smart-contract-lottery-f23
+forge install 
 forge build
 ```
 # Usage
